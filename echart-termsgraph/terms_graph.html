@@ -27,7 +27,7 @@
 <body>
 
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="main" style="width: 1024px;height:800px;"></div>
+    <div id="main" style="width: 1200px;height:800px;"></div>
 	
     <script type="text/javascript">
 	
@@ -44,11 +44,12 @@
 
         var graph = echarts.dataTool.gexf.parse(xml);
         var categories = [];
-        for (var i = 0; i < 5; i++) {
-            categories[i] = {
-                name: '聚类' + i
-            };
-        }
+	categories[0] ={name: '经济'};
+	categories[1] = {name:'政务'};
+	categories[2] ={name: '产业创新'};
+	categories[3] = {name:'口岸通关'};
+	categories[4] = {name:'创业'};
+
         graph.nodes.forEach(function (node) {
             node.itemStyle = null;
             node.value = node.symbolSize;
@@ -77,7 +78,7 @@
             animationEasingUpdate: 'quinticInOut',
             series : [
                 {
-                    name: 'Les Miserables',
+                    name: '关键词',
                     type: 'graph',
                     layout: 'none',
                     data: graph.nodes,
