@@ -1,0 +1,170 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <!-- ÒıÈë ECharts ÎÄ¼ş -->
+    <script src="https://echarts.baidu.com/echarts2/doc/example/www2/js/echarts-all.js"></script>
+
+</head>
+
+<body>
+    <!-- ÎªECharts×¼±¸Ò»¸ö¾ß±¸´óĞ¡£¨¿í¸ß£©µÄDom -->
+    <div id="main" style="width: 1150px;height:600px;text-align:center" ></div>
+    <script type="text/javascript">
+        // »ùÓÚ×¼±¸ºÃµÄdom£¬³õÊ¼»¯echartsÊµÀı
+        var myChart = echarts.init(document.getElementById('main'));
+
+myChart.setOption({
+    series : [
+        {
+            name: 'test',
+            type: 'chord',
+            color : [
+        '#FBB367','#80B1D2','#FB8070','#CC99FF','#B0D961',
+        '#99CCCC','#BEBBD8','#FFCC99','#8DD3C8','#FF9999',
+        '#CCEAC4','#BB81BC','#FBCCEC','#CCFF66','#99CC66',
+        '#66CC66','#FF6666','#FFED6F','#ff7f50','#87cefa',
+    ]}],
+    title : {
+        text : '粤港澳大湾区铁路通达情况',
+        subtext: '数据来自12306',
+        sublink: 'l',
+        x:'right',
+        y:'bottom'
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            restore : {show: true},
+            magicType: {show: true, type: ['force', 'chord']},
+            saveAsImage : {show: true}
+        }
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter : function (params) {
+            if (params.name && params.name.indexOf('-') != -1) {
+                return params.name.replace('-', ' ' + params.seriesName + ' ')
+            }
+            else {
+                return params.name ? params.name : params.data.id
+            }
+        }
+    },
+    legend : {
+        data : [
+           '香港',
+          '深圳',
+          '珠海',
+          '佛山',
+          '惠州',
+          '东莞',
+          '中山',
+          '江门',
+          '肇庆',
+          '广州',
+           '',
+            '高铁',
+            '动车',
+            '普通列车'
+        ],
+        orient : 'vertical',
+        x : 'left'
+    },
+    series : [
+        {
+            "name": "高铁",
+            "type": "chord",
+            "showScaleText": false,
+            "clockWise": false,
+            "data": [
+                {"name": "广州"},
+                {"name": "深圳"},
+                {"name": "珠海"},
+                {"name": "佛山"},
+                {"name": "惠州"},
+                {"name": "江门"},
+                {"name": "东莞"},
+                {"name": "中山"},
+                {"name": "肇庆"},
+                {"name": "香港"}
+            ],
+            "matrix": [
+                [0,218,67,16,5,12,89,79,17,34],
+                [34,0,1,5,19,0,89,1,6,93],
+                [67,1,0,0,1,0,0,67,0,0],
+                [16,5,0,0,0,0,0,0,27,2],
+                [5,19,1,0,0,0,39,1,0,6],
+                [13,0,0,0,0,0,0,13,0,0],
+                [89,89,0,0,39,0,0,0,0,0],
+                [79,1,67,0,0,13,0,0,0,0],
+                [17,6,0,0,1,0,0,0,0,0],
+                [34,93,0,2,6,0,0,0,0,0]
+            ]
+        },
+        {
+            "name": "动车",
+            "type": "chord",
+            "insertToSerie": "高铁",
+            "data": [
+                {"name": "广州"},
+                {"name": "深圳"},
+                {"name": "珠海"},
+                {"name": "佛山"},
+                {"name": "惠州"},
+                {"name": "江门"},
+                {"name": "东莞"},
+                {"name": "中山"},
+                {"name": "肇庆"},
+                {"name": "香港"}
+            ],
+            "matrix": [
+               [0,2,11,78,5,0,13,20,80,0],
+                [0,0,1,1,51,0,1,1,1,0],
+                [11,1,0,4,0,0,0,11,3,0],
+                [78,1,4,0,0,0,1,7,47,0],
+                [5,51,0,0,0,0,9,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [13,1,0,4,9,0,0,0,1,0],
+                [20,1,11,7,1,0,0,0,3,0],
+                [80,1,3,4,0,0,1,3,0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+            ]
+        },
+        {
+            "name": "普通列车",
+            "type": "chord",
+            "insertToSerie": "高铁",
+            "data": [
+               {"name": "广州"},
+                {"name": "深圳"},
+                {"name": "珠海"},
+                {"name": "佛山"},
+                {"name": "惠州"},
+                {"name": "江门"},
+                {"name": "东莞"},
+                {"name": "中山"},
+                {"name": "肇庆"},
+                {"name": "香港"}
+            ],
+            "matrix": [
+                    [0,23,0,14,18,0,34,0,14,0],
+                    [0,0,0,5,22,0,34,0,5,0],
+                    [0,0,0,0,0,0,0,0,0,0],
+                    [14,5,0,0,1,0,3,0,14,0],
+                    [18,22,0,1,0,0,38,0,1,0],
+                    [0,0,0,0,0,0,0,0,0,0],
+                    [34,34,0,0,38,0,0,0,3,0],
+                    [0,0,0,0,0,0,0,0,0,0],
+                    [,14,5,0,0,0,0,3,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0],
+            ]
+        }
+    ]
+    })
+    
+    </script>
+ 
+
+</body>
+
+</html>
